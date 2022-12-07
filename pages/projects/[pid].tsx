@@ -26,9 +26,11 @@ const index = () => {
 
   const getChatGPT = async () => {
     try {
-      const response = await fetch(`/api/projects/demo/${tool}?prompt=${prompt}`);
+      const response = await fetch(`/api/projects/demo/${tool}?prompt=${prompt}`, {
+        method: 'GET'
+      });
       const data = await response.json();
-      setResponse(data.name);
+      setResponse(data.res);
     } catch (err) {
       console.log(err);
     }
