@@ -38,7 +38,12 @@ export default function App({ Component, pageProps }: AppProps) {
           </li>
         </ul>
       </div>
-      <Component {...pageProps} />
+
+      <div className="flex flex-row h-screen w-full">
+        <div className="flex-1 overflow-y-auto  p-8  bg-[#444654]">
+          <Component {...pageProps} />
+        </div>
+      </div>
     </div>
   );
 }
