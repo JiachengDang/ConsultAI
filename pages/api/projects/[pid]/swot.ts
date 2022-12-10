@@ -3,20 +3,32 @@ import { ChatGPTAPI } from 'chatgpt';
 import dotenv from 'dotenv-safe';
 
 dotenv.config();
-export default async function getChatGPTResponse(req: NextApiRequest, res: NextApiResponse) {
-  const {
-    query: { pid, prompt },
-    method
-  } = req;
+
+async function getChatGPT(prompt: string) {
   const api = new ChatGPTAPI({ sessionToken: process.env.SESSION_TOKEN as string });
   await api.ensureAuth();
   const response = await api.sendMessage(
     `Give me a thorough, professional and detailed SWOT analysis of ${prompt}.`
   );
+  return response;
+}
+
+export default async function getChatGPTResponse(req: NextApiRequest, res: NextApiResponse) {
+  const {
+    query: { pid, prompt },
+    method
+  } = req;
 
   switch (method) {
     case 'GET':
-      res.status(200).json({ res: response });
+      getChatGPT(prompt as string)
+        .then((response) => {
+          res.status(200).json({ res: response });
+          console.log('Success!');
+        })
+        .catch((err) => {
+          res.status(500).json({ res: err });
+        });
       break;
     default:
       res.setHeader('Allow', ['GET']);
