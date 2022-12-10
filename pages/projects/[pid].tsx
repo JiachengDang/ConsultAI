@@ -59,12 +59,12 @@ const index = () => {
           className="input input-bordered w-full max-w-xs"
         />
         <button onClick={() => getChatGPT()} className=" mt-8 btn btn-block">
-          {loading && (
+          {/* {loading && (
             <div
               className="radial-progress animate-spin mr-2"
               style={{ '--value': 70, '--size': '2rem', '--thickness': '0.25rem' }}
             />
-          )}
+          )} */}
 
           <span className="">Generate</span>
         </button>
