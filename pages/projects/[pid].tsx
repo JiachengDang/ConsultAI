@@ -44,7 +44,7 @@ const index = () => {
   };
 
   return (
-    <>
+    <div className="subpixel-antialiased tracking-wide leading-relaxed">
       <div className="text-4xl text-white ">{tools[tool].name}</div>
       <div className="divider"></div>
       <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24" />
@@ -64,16 +64,17 @@ const index = () => {
           className="input input-bordered w-full max-w-xs"
         />
         <button onClick={() => getChatGPT()} className=" mt-8 btn btn-block">
-          <div className="pr-4">
+          {loading && (
             <div
               className="radial-progress animate-spin mr-4"
               style={{ '--value': 70, '--size': '2rem', '--thickness': '0.25rem' }}
             />
-            <span className="">Generate</span>
-          </div>
+          )}
+
+          <span className="">Generate</span>
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
