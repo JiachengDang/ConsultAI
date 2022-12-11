@@ -86,6 +86,7 @@ export default async function getChatGPTResponse(req: NextApiRequest, res: NextA
         })
         .catch((err) => {
           res.status(500).json({ res: err });
+          console.log(err);
         });
       break;
     default:

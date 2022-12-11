@@ -66,7 +66,7 @@ const index = () => {
             />
           )} */}
 
-          <span className="">Generate</span>
+          <span className="">{loading ? 'Loading...' : 'Generate'}</span>
         </button>
       </div>
     </div>
